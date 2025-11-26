@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>油纸伞</title>
+    <style>
+        /* 清除浏览器默认样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style: none;
+        }
+
+        /* 全局控制 */
+        body {
+            font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        /* 超链接默认样式 */
+        a:link,
+        a:visited {
+            color: #999;
+            text-decoration: none;
+        }
+
+        /* 当鼠标移到超链接时的样式 */
+        a:hover {
+            color: #fff;
+        }
+        
+        /* 添加模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        .modal-close:hover {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            border-color: #299585;
+            box-shadow: 0 0 5px rgba(41, 149, 133, 0.2);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #299585;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #1e7b6f;
+        }
+        .switch-form {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .switch-form a {
+            color: #299585;
+            cursor: pointer;
+        }
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+        /* 焦点 */
+        input,
+        textarea {
+            outline: none;
+        }
+
+        /* videobox */
+        .videobox {
+            width: 100%;
+            height: 1000px;
+            overflow: hidden;
+            position: relative;   /* 相对定位设置方便后面绝对定位 */
+        }
+
+        .videobox video {
+            width: 100%;
+            min-width: 1920px;  /*最小宽度 */
+            background: #333;
+            position: absolute;   /* 绝对定位 */
+            top: 50%;left: 50%; /*  居中 */
+            transform: translate(-50%, -50%);
+        }
+
+        .videobox header {
+            width: 100%;
+            height: 40px;
+            z-index: 999;
+            background: #333;
+            position: absolute;
+        }
+
+        .videobox header .con {
+            width: 1030px;
+            height: 40px;
+            margin: 0 auto;  /* 居中 */
+        }
+
+        .videobox header .left {
+            width: 75px;
+            height: 20px;
+            background: url(./素材/images/logo.png) 0 0 no-repeat;
+            margin-top: 10px;
+            float: left;
+        }
+
+        .videobox header .right {
+            float: right;  /* 向右浮动 */
+            margin-top: 10px;
+            font-family: "freshskin";
+        }
+
+        .videobox header .right a {
+            margin-right: 10px;
+        }
+
+        .videobox nav {
+            width: 100%;
+            height: 90px;
+            background: rgba(0, 0, 0, 0.2);  /* 透明度 0.2是透明程度 */
+            z-index: 1000;
+            position: absolute;
+            top: 40px;
+            border-bottom: 1px solid #fff;
+        }
+
+        .videobox nav ul {
+            width: 1030px;
+            height: 90px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .videobox nav ul li {
+            float: left;
+            margin-right: 19%;
+        }
+
+        .videobox nav ul .left:hover aside {
+            display: block;
+        }
+
+        .videobox nav ul .left a {
+            display: block;  /* 转换为块元素 */
+            height: 90px;
+            line-height: 90px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .videobox nav ul .left a img {
+            vertical-align: middle;  /* 垂直居中 */
+        }
+
+        .videobox nav ul .left a span {
+            margin: 0 10px;
+        }
+
+        .videobox aside {
+            display: none;
+            width: 380px;
+            height: 560px;
+            background: rgba(0, 0, 0, 0.3);
+            position: absolute;
+            left: 0;
+            top: 90px;
+            z-index: 1500;
+            color: #fff;
+        }
+
+        .videobox aside span {
+            width: 200px;
+            height: 14px;
+            background: url(./素材/images/liebiao.png) 0 0 no-repeat;
+            position: absolute;
+            left: 50px;
+            top: 0;
+        }
+
+        .videobox aside ol {
+            width: 155px;
+            float: left;
+        }
+
+        .videobox aside ol li {
+            width: 155px;
+            height: 25px;
+            line-height: 25px;
+            cursor: pointer; /* 鼠标放上变手指形 */
+            font-family: "宋体";
+        }
+
+        .videobox aside ol li.con {
+            font-size: 16px;
+            text-indent: 0;
+            font-family: "微软雅黑";
+            padding: 18px 0;
+        }
+
+        .videobox aside .zuo {
+            margin: 35px 0 0 68px;
+        }
+
+        .videobox aside .you {
+            margin-top: 35px;
+        }
+
+        .videobox aside img {
+            margin: 10px 0 0 13px;
+        }
+
+        .videobox nav ul .center {
+            margin-top: 32px;
+        }
+
+        .videobox nav ul .center input {
+            width: 240px;
+            height: 30px;
+            border: 1px solid #fff;
+            border-radius: 15px;
+            /* 圆角 */
+            color: #fff;
+            line-height: 32px;
+            /* 输入框的高 */
+            background: rgba(0, 0, 0, 0);
+            padding-left: 30px;
+            box-sizing: border-box;
+            background: url(./素材/images/search.png) 3px 3px no-repeat;
+            outline: none;
+        }
+
+        .videobox nav ul .right {
+            margin-top: 32px;
+            width: 280px;
+            height: 32px;
+            margin-right: 0;
+            text-align: center;
+            line-height: 32px;
+            font-size: 16px;
+            font-family: "freshskin";
+        }
+
+        .videobox nav ul .right a {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            color: #fff;
+            box-shadow: 0 0 0 1px #fff inset;
+            transition: box-shadow 0.3s ease 0s;
+            border-radius: 16px;
+            margin-left: 30px;
+        }
+
+        .videobox nav ul .right a:hover {
+            box-shadow: 0 0 0 16px #fff inset;
+            color: #c1dcc5;
+        }
+
+        .videobox .pic {
+            width: 800px;
+            height: 400px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: url(./素材/images/wenzi.png) no-repeat;
+            text-align: center;
+        }
+
+        .videobox .pic p {
+            margin-top: 415px;
+            color: #4c8174;
+        }
+
+        .videobox .pic ul {
+            position: absolute;
+            color: #999;
+        }
+
+        .videobox .pic ul li {
+            width: 180px;
+            height: 56px;
+            border-radius: 28px;
+            /* 圆角 */
+            background: #fff;
+            text-align: left;
+        }
+
+        .videobox .pic ul .one {
+            line-height: 56px;
+            position: absolute;
+            left: -1920px;
+            top: 40px;
+            opacity: 0;
+            transition: all 2s ease-in 0s;
+        }
+
+        .videobox .pic ul .two {
+            line-height: 56px;
+            position: absolute;
+            left: 1920px;
+            top: 40px;
+            opacity: 0;
+            transition: all 2s ease-in 0s;
+        }
+
+        body:hover .videobox .pic ul .one {
+            position: absolute;
+            left: 200px;
+            top: 40px;
+            opacity: 0.8;
+        }
+
+        body:hover .videobox .pic ul .two {
+            position: absolute;
+            left: 400px;
+            top: 40px;
+            opacity: 0.8;
+        }
+
+        .videobox .pic ul .one span,
+        .videobox .pic ul .two span {
+            float: left;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 20px;
+            margin: 8px 10px 0 10px;
+            box-shadow: 0 0 0 1px #90c197 inset;
+            transition: box-shadow 0.3s ease 0s;
+            font-weight: bold;
+            color: #90c197;
+        }
+
+        .videobox .pic ul .two span {
+            margin: 8px 30px 0 10px;
+        }
+
+        .videobox .pic ul .one:hover span,
+        .videobox .pic ul .two:hover span {
+            box-shadow: 0 0 0 20px #90c197 inset;
+            color: #fff;
+        }
+        @font-face{
+            font-family:'freshskin';
+            src: url(../油纸伞网站/素材/fonts/iconfont.ttf);
+        }
+
+        /* classic */
+        .classic{
+            width: 100%;
+            height: 530px;
+            background: #fff;
+        }
+        .classic header{
+            width: 520px;
+            height: 95px;
+            background: #f7f7f7;
+            border-radius: 48px;
+            margin: 70px auto 0;
+            box-sizing: border-box;
+            padding: 0 15px;
+        }
+        .classic p{
+            margin-top: 10px;
+            text-align: center;
+            color: #db0067;
+        }
+        .classic ul{
+            margin: 70px auto 0;
+            width: 960px;
+        }
+        .classic ul li{
+            width: 266px;
+            height: 250px;
+            border: 1px solid #ccc;
+            background: url(./素材/images/pic1.jpg) 0 0 no-repeat;
+            float: left;
+            margin-right: 8%;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;   /* 隐藏与产品介绍相关的盒子，直接出现在图片上 */
+        }
+        .classic ul li:nth-child(2){
+            background-image: url(./素材/images/pic2.jpg);
+        }
+        .classic ul li:nth-child(3){
+            margin-right: 0;  /* 将掉下去的盒子上移 */
+            background-image: url(./素材/images/pic3.jpg);
+        }
+        .classic ul li hgroup{
+            position: absolute;
+            left: 0;
+            top: -250px;
+            width: 266px;
+            height: 250px;
+            background:rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease-in;
+        }
+        .classic ul li:hover hgroup{   /* 鼠标放上盒子下移 */
+            position: absolute;    
+            left: 0;
+            top: 0;
+        }
+        .classic ul li hgroup h2:nth-child(1){
+            font-size: 22px;
+            text-align: center;
+            color: #fff;
+            font-weight: normal;
+            margin-top: 58px;
+        }
+        .classic ul li hgroup h2:nth-child(2){
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+            font-weight: normal;
+            margin-top: 15px;
+        }
+        .classic ul li hgroup h2:nth-child(3){
+            width: 26px;
+            height: 26px;
+            margin-left: 120px;
+            margin-top: 15px;
+            background: url(./素材/images/jiantou.png) 0 0 no-repeat;
+        }
+        .classic ul li hgroup h2:nth-child(4){
+            width: 75px;
+            height: 22px;
+            margin-left: 95px;
+            margin-top: 25px;
+            background: url(./素材/images/anniu.png) 0 0 no-repeat;
+        }
+
+        /* try */
+        .try{
+            width: 100%;
+            height: 312px;
+            background: #299585;
+            padding-top: 70px;
+        }
+        .try header{
+            width: 555_h 95px;
+            background: #f7f7f7;
+            border-radius: 48px;
+            margin: 0 auto;  
+            box-sizing: border-box;   
+            padding: 7px 0 0 35px;
+        }
+        .try p{
+            margin-top: 10px;
+            text-align: center;
+            color: #fff;
+        }
+        .try ul{
+            margin: 70px auto 0;
+            width: 960px;
+        }
+        .try ul li{
+            width: 291px;
+            height: 251px;
+            float: left;
+            margin-right: 4%;
+            margin-bottom: 40px;
+            position: relative;
+            perspective: 230px;
+        }
+        .try ul li:last-child{
+            margin-right: 0;
+        }
+        .try ul li img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            backface-visibility: hidden;
+            transition: all 0.5s ease-in 0s;
+        }
+        .try ul li img.fan{
+            transform: rotateX(-180deg);
+        }
+        .try ul li:hover img.fan{
+            transform: rotateX(0deg);
+        }
+        .try ul li:hover img.zheng{
+            transform: rotateX(180deg);
+        }
+
+        /* make */
+        .make{
+            width: 100%;
+            height: 700px;
+            background: #fff;
+        }
+        .make header{
+            width: 508px;
+            height: 95px;
+            background: #f7f7f7;
+            border-radius: 48px;
+            margin: 220px auto 0;
+            box-sizing: border-box;
+            padding: 7px 0 0 35px;
+        }
+        .make p{
+            margin-top: 10px;
+            text-align: center;
+            color: #db0067;
+        }
+        .make ul{
+            margin: 70px auto 0;
+            width: 960px;
+        }
+        .make ul li{
+            width: 195px;
+            height: 195px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            float: left;
+            margin-right: 5%;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .make ul li img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .make ul li:nth-child(4),.make ul li:nth-child(8){
+            margin-right: 0;
+        }
+        .make ul li .tihuan{
+            opacity: 0;  /* 全透明 */
+            transition: all 0.4s ease-in 0.2s;
+        }
+        .make ul li:hover .tihuan{
+            opacity: 1;
+            transform: translate(-50%,-50%) scale(0.75);
+        }
+        .make ul li .tu{
+            transition: all 0.4s ease-in 0s;
+        }
+        .make ul li:hover .tu{
+            opacity: 0;
+            transform: translate(-50%,-50%) scale(0.5);
+        }
+
+        /* footer */
+        footer{
+            width: 100%;
+            height: 400px;
+            background: #545861;
+            border-bottom: 1px solid #fff;
+        }
+        footer .logo{
+            width: 1000px;
+            height: 100px;
+            margin: 0 auto;
+            background: url(./素材/images/logo1.jpg) no-repeat center center;
+            border-bottom: 1px solid #8c9299;
+        }
+        footer .message{
+            width: 1000px;
+            margin: 20px auto 0;
+            color: #fffada;
+        }
+        footer .message .left{
+            width: 525px;
+            float: left;
+            padding-left: 30px;
+            box-sizing: border-box;
+        }
+        footer .message .left li{
+            float: left;
+            margin-right: 30px;
+        }
+        footer .message .left li input{
+            width: 215px;
+            height: 32px;
+            border-radius: 5px;
+            margin: 10px 0 15px 0;
+            padding-left: 10px;
+            box-sizing: border-box;
+            border: none;
+        }
+        footer .message .left li:last-child input{
+            width: 120px;
+            height: 39px;
+            padding-left: 0;
+            border: none;
+            background: url(./素材/images/but.jpg) no-repeat;
+        }
+        footer .message .right{float: left;}
+        footer .message .right p{
+            margin-bottom: 10px;
+        }
+        footer .message .right text area{
+            width: 400px;
+            height: 172px;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: none;
+        }
+        /* footer */
+        /* banquan */
+        .banquan{
+            width: 100%;
+            height: 60px;
+            background: #333333;
+            text-align: center;
+        }
+        .banquan a{
+            line-height: 60px;
+        }
+        /* banquan */
+    </style>
+</head>
+
+<body>
+    <div class="videobox">
+        <header>
+            <div class="con">
+                <section class="left"></section>
+                <section class="right">
+                    <a href="#" id="loginLink">登录</a>
+                    <a href="#" id="registerLink">注册</a>
+                </section>
+            </div>
+        </header>
+        <nav>
+            <ul>
+                <li class="left">
+                    <a class="one" href="#">
+                        <img src="./素材/images/sanxian.png" alt="">
+                        <span>选项</span>
+                        <img src="./素材/images/sanjiao.png" alt="">
+                    </a>
+                    <aside>
+                        <span></span>
+                        <ol class="zuo">
+                            <li class="con">油纸伞产品分类</li>
+                            <li>>彩印类</li>
+                            <li>>手绘类</li>
+                            <li>>植物标本类</li>
+                            <li>>石板印刷类</li>
+                            <li class="con">油脂伞功能分类</li>
+                            <li>>装饰吊顶</li>
+                            <li>>户外庭院</li>
+                            <li>>婚庆</li>
+                            <li class="con">油纸伞节日礼物</li>
+                            <li>>节节高升</li>
+                            <li>>团圆美满</li>
+                            <li>>平安暴富</li>
+                        </ol>
+                        <ol class="you">
+                            <li class="con">油纸伞介绍</li>
+                            <li>>认识油纸伞</li>
+                            <li>>油纸伞历史</li>
+                            <li>>工艺特色</li>
+                            <li>>文化内涵</li>
+                            <li class="con">热门搜索</li>
+                            <li>>摄影专用</li>
+                            <li>>遮阳伞</li>
+                            <li>>影视同款</li>
+                            <li>>舞蹈</li>s
+                        </ol>
+                        <img src="./素材/images/tu1.jpg" alt="">
+                    </aside>
+                </li>
+                <li class="center">
+                    <form>
+                        <input type="text" value="请输入商品名称，品牌编号">
+                    </form>
+                </li>
+                <li class="right">
+                    <a href="#">&#xe65e;</a>
+                    <a href="#">&#xe608;</a>
+                    <a href="#">&#xf012a;</a>
+                    <a href="#">&#xe68e;</a>
+                </li>
+            </ul>
+        </nav>
+        <video src="./素材/video/home_loop_720p.mp4" autoplay loop muted></video>
+        <audio src="./素材/audio/buguniao.mp3" autoplay loop></audio>
+        <div class="pic">
+            <p>第二批国家级非物质文化遗产名录(The second batch of national intangible cultural heritage list)</p>
+            <ul>
+                <li class="one"><span>&#xe662</span>STANDARD标准</li>
+                <li class="two"><span>&#xe662</span>HD高清</li>
+            </ul>
+        </div>
+    </div>
+    <div class="classic">
+        <header>
+            <img src="./素材/images/new.png" alt="">
+        </header>
+        <p>采用安全无镉丙烯颜料，性质稳定，不易褪色</p>
+        <ul>
+            <li>
+               <hgroup>
+                   <h2>白玉兰-油纸伞</h2>
+                   <h2>加厚油纸，天然桐油</h2>
+                   <h2></h2>
+                   <h2></h2>
+               </hgroup>
+            </li>
+            <li>
+                <hgroup>
+                    <h2>桃花-油纸伞</h2>
+                    <h2>加厚油纸，天然桐油</h2>
+                    <h2></h2>
+                    <h2></h2>
+                </hgroup>
+            </li>
+            <li>
+                <hgroup>
+                    <h2>幽兰山谷-油纸伞</h2>
+                    <h2>加厚油纸，天然桐油</h2>
+                    <h2></h2>
+                    <h2></h2>
+                </hgroup>
+            </li>
+        </ul>
+    </div>
+    <div class="try">
+        <header>
+            <img src="./素材/images/gongyi.png" >
+        </header>
+        <p>300年工艺传承，独具精工匠心，108道工序</p>
+        <ul>
+            <li>
+                <img class="zheng" src="./素材/images/try1.jpg" alt="">
+                <img class="fan" src="./素材/images/try4.jpg" alt="">
+            </li>
+            <li>
+                <img class="zheng" src="./素材/images/try2.jpg" alt="">
+                <img class="fan" src="./素材/images/try5.jpg" alt="">
+            </li>
+            <li>
+                <img class="zheng" src="./素材/images/try3.jpg" alt="">
+                <img class="fan" src="./素材/images/try6.jpg" alt="">
+            </li>
+        </ul>
+    </div>
+    <div class="make">
+        <header>
+            <img src="./素材/images/pinpai.png" alt="">
+        </header>
+        <p>我们更专业 用户更放心</p>
+        <ul>
+            <li>
+                <img class="tu" src="./素材/images/cp1.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th1.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp2.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th2.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp3.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th3.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp4.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th4.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp5.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th5.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp6.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th6.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp1.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th1.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp7.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th7.png" alt="">
+            </li>
+        </ul>
+    </div>
+    <div class="biaodan">
+        <footer>
+            <div class="logo"></div>
+            <div class="message">
+                <form>
+                    <ul class="left">
+                        <li>
+                            <p><label for="">姓名：</label></p>
+                            <input type="text">
+                        </li>
+                        <li>
+                            <p>邮件：</p>
+                            <input type="email">
+                        </li>
+                        <li>
+                            <p>电话：</p>
+                            <input type="tel" pattern="^\d{11}$" title="请输入11位数字">
+                        </li>
+                        <li>
+                            <p>密码：</p>
+                            <input type="password">
+                        </li>
+                        <li>
+                            <input class="but" type="submit" value="">
+                        </li>
+                    </ul>
+                    <div class="right">
+                        <p>留言：</p>
+                        <textarea></textarea>
+                    </div>
+                </form>
+            </div>
+        </footer>
+        <!-- biaodan end -->
+        <!-- banquan begin -->
+    </div>
+    <div class="banquan">
+        <a href="#">泸州油纸伞 独具匠心 工艺传承</a>
+    <!-- 登录模态框 -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>用户登录</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">用户名</label>
+                    <input type="text" id="loginUsername" placeholder="请输入用户名" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">密码</label>
+                    <input type="password" id="loginPassword" placeholder="请输入密码" required>
+                </div>
+                <button type="submit" class="submit-btn">登录</button>
+                <div class="switch-form">
+                    还没有账号？ <a id="switchToRegister">立即注册</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>用户注册</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">用户名</label>
+                    <input type="text" id="regUsername" placeholder="请输入用户名" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">邮箱</label>
+                    <input type="email" id="regEmail" placeholder="请输入邮箱" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">密码</label>
+                    <input type="password" id="regPassword" placeholder="请输入密码" required>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPassword">确认密码</label>
+                    <input type="password" id="regConfirmPassword" placeholder="请再次输入密码" required>
+                </div>
+                <button type="submit" class="submit-btn">注册</button>
+                <div class="switch-form">
+                    已有账号？ <a id="switchToLogin">立即登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="videobox">
+        <header>
+            <div class="con">
+                <section class="left"></section>
+                <section class="right">
+                    <a href="#">登录</a>
+                    <a href="#">注册</a>
+                </section>
+            </div>
+        </header>
+        <nav>
+            <ul>
+                <li class="left">
+                    <a class="one" href="#">
+                        <img src="./素材/images/sanxian.png" alt="">
+                        <span>选项</span>
+                        <img src="./素材/images/sanjiao.png" alt="">
+                    </a>
+                    <aside>
+                        <span></span>
+                        <ol class="zuo">
+                            <li class="con">油纸伞产品分类</li>
+                            <li>>彩印类</li>
+                            <li>>手绘类</li>
+                            <li>>植物标本类</li>
+                            <li>>石板印刷类</li>
+                            <li class="con">油脂伞功能分类</li>
+                            <li>>装饰吊顶</li>
+                            <li>>户外庭院</li>
+                            <li>>婚庆</li>
+                            <li class="con">油纸伞节日礼物</li>
+                            <li>>节节高升</li>
+                            <li>>团圆美满</li>
+                            <li>>平安暴富</li>
+                        </ol>
+                        <ol class="you">
+                            <li class="con">油纸伞介绍</li>
+                            <li>>认识油纸伞</li>
+                            <li>>油纸伞历史</li>
+                            <li>>工艺特色</li>
+                            <li>>文化内涵</li>
+                            <li class="con">热门搜索</li>
+                            <li>>摄影专用</li>
+                            <li>>遮阳伞</li>
+                            <li>>影视同款</li>
+                            <li>>舞蹈</li>s
+                        </ol>
+                        <img src="./素材/images/tu1.jpg" alt="">
+                    </aside>
+                </li>
+                <li class="center">
+                    <form>
+                        <input type="text" value="请输入商品名称，品牌编号">
+                    </form>
+                </li>
+                <li class="right">
+                    <a href="#">&#xe65e;</a>
+                    <a href="#">&#xe608;</a>
+                    <a href="#">&#xf012a;</a>
+                    <a href="#">&#xe68e;</a>
+                </li>
+            </ul>
+        </nav>
+        <video src="./素材/video/home_loop_720p.mp4" autoplay loop muted></video>
+        <audio src="./素材/audio/buguniao.mp3" autoplay loop></audio>
+        <div class="pic">
+            <p>第二批国家级非物质文化遗产名录(The second batch of national intangible cultural heritage list)</p>
+            <ul>
+                <li class="one"><span>&#xe662</span>STANDARD标准</li>
+                <li class="two"><span>&#xe662</span>HD高清</li>
+            </ul>
+        </div>
+    </div>
+    <div class="classic">
+        <header>
+            <img src="./素材/images/new.png" alt="">
+        </header>
+        <p>采用安全无镉丙烯颜料，性质稳定，不易褪色</p>
+        <ul>
+            <li>
+               <hgroup>
+                   <h2>白玉兰-油纸伞</h2>
+                   <h2>加厚油纸，天然桐油</h2>
+                   <h2></h2>
+                   <h2></h2>
+               </hgroup>
+            </li>
+            <li>
+                <hgroup>
+                    <h2>桃花-油纸伞</h2>
+                    <h2>加厚油纸，天然桐油</h2>
+                    <h2></h2>
+                    <h2></h2>
+                </hgroup>
+            </li>
+            <li>
+                <hgroup>
+                    <h2>幽兰山谷-油纸伞</h2>
+                    <h2>加厚油纸，天然桐油</h2>
+                    <h2></h2>
+                    <h2></h2>
+                </hgroup>
+            </li>
+        </ul>
+    </div>
+    <div class="try">
+        <header>
+            <img src="./素材/images/gongyi.png" >
+        </header>
+        <p>300年工艺传承，独具精工匠心，108道工序</p>
+        <ul>
+            <li>
+                <img class="zheng" src="./素材/images/try1.jpg" alt="">
+                <img class="fan" src="./素材/images/try4.jpg" alt="">
+            </li>
+            <li>
+                <img class="zheng" src="./素材/images/try2.jpg" alt="">
+                <img class="fan" src="./素材/images/try5.jpg" alt="">
+            </li>
+            <li>
+                <img class="zheng" src="./素材/images/try3.jpg" alt="">
+                <img class="fan" src="./素材/images/try6.jpg" alt="">
+            </li>
+        </ul>
+    </div>
+    <div class="make">
+        <header>
+            <img src="./素材/images/pinpai.png" alt="">
+        </header>
+        <p>我们更专业 用户更放心</p>
+        <ul>
+            <li>
+                <img class="tu" src="./素材/images/cp1.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th1.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp2.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th2.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp3.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th3.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp4.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th4.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp5.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th5.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp6.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th6.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp1.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th1.png" alt="">
+            </li>
+            <li>
+                <img class="tu" src="./素材/images/cp7.jpg" alt="">
+                <img class="tihuan" src="./素材/images/th7.png" alt="">
+            </li>
+        </ul>
+    </div>
+    <div class="biaodan">
+        <footer>
+            <div class="logo"></div>
+            <div class="message">
+                <form id="contactForm">
+                    <ul class="left">
+                        <li>
+                            <p><label for="name">姓名：</label></p>
+                            <input type="text" id="name" required>
+                        </li>
+                        <li>
+                            <p><label for="email">邮件：</label></p>
+                            <input type="email" id="email" required>
+                        </li>
+                        <li>
+                            <p><label for="phone">电话：</label></p>
+                            <input type="tel" id="phone" pattern="^\d{11}$" title="请输入11位数字">
+                        </li>
+                        <li>
+                            <p><label for="contactPassword">密码：</label></p>
+                            <input type="password" id="contactPassword">
+                        </li>
+                        <li>
+                            <input class="but" type="submit" value="提交">
+                        </li>
+                    </ul>
+                    <div class="right">
+                        <p><label for="message">留言：</label></p>
+                        <textarea id="message" rows="8"></textarea>
+                    </div>
+                </form>
+            </div>
+        </footer>
+        <!-- biaodan end -->
+        <!-- banquan begin -->
+    </div>
+    <div class="banquan">
+        <a href="#">泸州油纸伞 独具匠心 工艺传承</a>
+    </div>
+    <!-- banquan end -->
+<script>
+        // 获取DOM元素
+        const loginLink = document.getElementById('loginLink');
+        const registerLink = document.getElementById('registerLink');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeButtons = document.querySelectorAll('.modal-close');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const contactForm = document.getElementById('contactForm');
+
+        // 打开登录模态框
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+        });
+
+        // 打开注册模态框
+        registerLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerModal.style.display = 'flex';
+        });
+
+        // 关闭模态框
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'none';
+            });
+        });
+
+        // 点击模态框外部关闭
+        window.addEventListener('click', function(event) {
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (event.target === registerModal) {
+                registerModal.style.display = 'none';
+            }
+        });
+
+        // 切换到注册表单
+        switchToRegister.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'flex';
+        });
+
+        // 切换到登录表单
+        switchToLogin.addEventListener('click', function() {
+            registerModal.style.display = 'none';
+            loginModal.style.display = 'flex';
+        });
+
+        // 登录表单提交
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // 这里可以添加实际的登录验证逻辑
+            alert('登录成功！欢迎回来，' + username);
+            loginModal.style.display = 'none';
+        });
+
+        // 注册表单提交
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('两次输入的密码不一致！');
+                return;
+            }
+            
+            // 这里可以添加实际的注册逻辑
+            alert('注册成功！欢迎加入我们，' + username);
+            registerModal.style.display = 'none';
+        });
+
+        // 联系表单提交
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // 这里可以添加实际的表单提交逻辑
+            alert('提交成功！感谢您的留言，' + name);
+            contactForm.reset();
+        });
+    </script>
+</body>
+
+</html>
+    // 获取DOM元素
+    const loginLink = document.getElementById('loginLink');
+    const registerLink = document.getElementById('registerLink');
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    const closeButtons = document.querySelectorAll('.modal-close');
+    const switchToRegister = document.getElementById('switchToRegister');
+    const switchToLogin = document.getElementById('switchToLogin');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const contactForm = document.getElementById('contactForm');
+
+    // 打开登录模态框
+    loginLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        loginModal.style.display = 'flex';
+    });
+
+    // 打开注册模态框
+    registerLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        registerModal.style.display = 'flex';
+    });
+
+    // 关闭模态框
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'none';
+        });
+    });
+
+    // 点击模态框外部关闭
+    window.addEventListener('click', function(event) {
+        if (event.target === loginModal) {
+            loginModal.style.display = 'none';
+        }
+        if (event.target === registerModal) {
+            registerModal.style.display = 'none';
+        }
+    });
+
+    // 切换到注册表单
+    switchToRegister.addEventListener('click', function() {
+        loginModal.style.display = 'none';
+        registerModal.style.display = 'flex';
+    });
+
+    // 切换到登录表单
+    switchToLogin.addEventListener('click', function() {
+        registerModal.style.display = 'none';
+        loginModal.style.display = 'flex';
+    });
+
+    // 登录表单提交
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+        
+        // 这里可以添加实际的登录验证逻辑
+        alert('登录成功！欢迎回来，' + username);
+        loginModal.style.display = 'none';
+    });
+
+    // 注册表单提交
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('regUsername').value;
+        const email = document.getElementById('regEmail').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+        
+        if (password !== confirmPassword) {
+            alert('两次输入的密码不一致！');
+            return;
+        }
+        
+        // 这里可以添加实际的注册逻辑
+        alert('注册成功！欢迎加入我们，' + username);
+        registerModal.style.display = 'none';
+    });
+
+    // 联系表单提交
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        
+        // 这里可以添加实际的表单提交逻辑
+        alert('提交成功！感谢您的留言，' + name);
+        contactForm.reset();
+    });
+</script>
