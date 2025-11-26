@@ -31,6 +31,12 @@
         a:hover {
             color: #fff;
         }
+
+        /* 焦点 */
+        input,
+        textarea {
+            outline: none;
+        }
         
         /* 添加模态框样式 */
         .modal {
@@ -113,11 +119,6 @@
         .switch-form a:hover {
             text-decoration: underline;
         }
-        /* 焦点 */
-        input,
-        textarea {
-            outline: none;
-        }
 
         /* videobox */
         .videobox {
@@ -153,7 +154,7 @@
         .videobox header .left {
             width: 75px;
             height: 20px;
-            background: url(./素材/images/logo.png) 0 0 no-repeat;
+            background: url(./sucai/images/logo.png) 0 0 no-repeat;
             margin-top: 10px;
             float: left;
         }
@@ -225,7 +226,7 @@
         .videobox aside span {
             width: 200px;
             height: 14px;
-            background: url(./素材/images/liebiao.png) 0 0 no-repeat;
+            background: url(./sucai/images/liebiao.png) 0 0 no-repeat;
             position: absolute;
             left: 50px;
             top: 0;
@@ -236,12 +237,22 @@
             float: left;
         }
 
-        .videobox aside ol li {
-            width: 155px;
-            height: 25px;
-            line-height: 25px;
-            cursor: pointer; /* 鼠标放上变手指形 */
-            font-family: "宋体";
+        .videobox aside ol li {            
+            width: 155px;            
+            height: 25px;            
+            line-height: 25px;            
+            cursor: pointer; /* 鼠标放上变手指形 */            
+            font-family: "宋体";            
+        }
+        .videobox aside ol li a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .videobox aside ol li a:hover {
+            color: #90c197;
+            padding-left: 5px;
         }
 
         .videobox aside ol li.con {
@@ -279,7 +290,7 @@
             background: rgba(0, 0, 0, 0);
             padding-left: 30px;
             box-sizing: border-box;
-            background: url(./素材/images/search.png) 3px 3px no-repeat;
+            background: url(./sucai/images/search.png) 3px 3px no-repeat;
             outline: none;
         }
 
@@ -317,7 +328,7 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            background: url(./素材/images/wenzi.png) no-repeat;
+            background: url(./sucai/images/wenzi.png) no-repeat;
             text-align: center;
         }
 
@@ -398,7 +409,7 @@
         }
         @font-face{
             font-family:'freshskin';
-            src: url(../油纸伞网站/素材/fonts/iconfont.ttf);
+            src: url(../油纸伞网站/sucai/fonts/iconfont.ttf);
         }
 
         /* classic */
@@ -429,7 +440,7 @@
             width: 266px;
             height: 250px;
             border: 1px solid #ccc;
-            background: url(./素材/images/pic1.jpg) 0 0 no-repeat;
+            background: url(./sucai/images/pic1.jpg) 0 0 no-repeat;
             float: left;
             margin-right: 8%;
             margin-bottom: 40px;
@@ -437,11 +448,11 @@
             overflow: hidden;   /* 隐藏与产品介绍相关的盒子，直接出现在图片上 */
         }
         .classic ul li:nth-child(2){
-            background-image: url(./素材/images/pic2.jpg);
+            background-image: url(./sucai/images/pic2.jpg);
         }
         .classic ul li:nth-child(3){
             margin-right: 0;  /* 将掉下去的盒子上移 */
-            background-image: url(./素材/images/pic3.jpg);
+            background-image: url(./sucai/images/pic3.jpg);
         }
         .classic ul li hgroup{
             position: absolute;
@@ -476,14 +487,14 @@
             height: 26px;
             margin-left: 120px;
             margin-top: 15px;
-            background: url(./素材/images/jiantou.png) 0 0 no-repeat;
+            background: url(./sucai/images/jiantou.png) 0 0 no-repeat;
         }
         .classic ul li hgroup h2:nth-child(4){
             width: 75px;
             height: 22px;
             margin-left: 95px;
             margin-top: 25px;
-            background: url(./素材/images/anniu.png) 0 0 no-repeat;
+            background: url(./sucai/images/anniu.png) 0 0 no-repeat;
         }
 
         /* try */
@@ -609,7 +620,7 @@
             width: 1000px;
             height: 100px;
             margin: 0 auto;
-            background: url(./素材/images/logo1.jpg) no-repeat center center;
+            background: url(./sucai/images/logo1.jpg) no-repeat center center;
             border-bottom: 1px solid #8c9299;
         }
         footer .message{
@@ -641,7 +652,7 @@
             height: 39px;
             padding-left: 0;
             border: none;
-            background: url(./素材/images/but.jpg) no-repeat;
+            background: url(./sucai/images/but.jpg) no-repeat;
         }
         footer .message .right{float: left;}
         footer .message .right p{
@@ -670,209 +681,6 @@
 </head>
 
 <body>
-    <div class="videobox">
-        <header>
-            <div class="con">
-                <section class="left"></section>
-                <section class="right">
-                    <a href="#" id="loginLink">登录</a>
-                    <a href="#" id="registerLink">注册</a>
-                </section>
-            </div>
-        </header>
-        <nav>
-            <ul>
-                <li class="left">
-                    <a class="one" href="#">
-                        <img src="./素材/images/sanxian.png" alt="">
-                        <span>选项</span>
-                        <img src="./素材/images/sanjiao.png" alt="">
-                    </a>
-                    <aside>
-                        <span></span>
-                        <ol class="zuo">
-                            <li class="con">油纸伞产品分类</li>
-                            <li>>彩印类</li>
-                            <li>>手绘类</li>
-                            <li>>植物标本类</li>
-                            <li>>石板印刷类</li>
-                            <li class="con">油脂伞功能分类</li>
-                            <li>>装饰吊顶</li>
-                            <li>>户外庭院</li>
-                            <li>>婚庆</li>
-                            <li class="con">油纸伞节日礼物</li>
-                            <li>>节节高升</li>
-                            <li>>团圆美满</li>
-                            <li>>平安暴富</li>
-                        </ol>
-                        <ol class="you">
-                            <li class="con">油纸伞介绍</li>
-                            <li>>认识油纸伞</li>
-                            <li>>油纸伞历史</li>
-                            <li>>工艺特色</li>
-                            <li>>文化内涵</li>
-                            <li class="con">热门搜索</li>
-                            <li>>摄影专用</li>
-                            <li>>遮阳伞</li>
-                            <li>>影视同款</li>
-                            <li>>舞蹈</li>s
-                        </ol>
-                        <img src="./素材/images/tu1.jpg" alt="">
-                    </aside>
-                </li>
-                <li class="center">
-                    <form>
-                        <input type="text" value="请输入商品名称，品牌编号">
-                    </form>
-                </li>
-                <li class="right">
-                    <a href="#">&#xe65e;</a>
-                    <a href="#">&#xe608;</a>
-                    <a href="#">&#xf012a;</a>
-                    <a href="#">&#xe68e;</a>
-                </li>
-            </ul>
-        </nav>
-        <video src="./素材/video/home_loop_720p.mp4" autoplay loop muted></video>
-        <audio src="./素材/audio/buguniao.mp3" autoplay loop></audio>
-        <div class="pic">
-            <p>第二批国家级非物质文化遗产名录(The second batch of national intangible cultural heritage list)</p>
-            <ul>
-                <li class="one"><span>&#xe662</span>STANDARD标准</li>
-                <li class="two"><span>&#xe662</span>HD高清</li>
-            </ul>
-        </div>
-    </div>
-    <div class="classic">
-        <header>
-            <img src="./素材/images/new.png" alt="">
-        </header>
-        <p>采用安全无镉丙烯颜料，性质稳定，不易褪色</p>
-        <ul>
-            <li>
-               <hgroup>
-                   <h2>白玉兰-油纸伞</h2>
-                   <h2>加厚油纸，天然桐油</h2>
-                   <h2></h2>
-                   <h2></h2>
-               </hgroup>
-            </li>
-            <li>
-                <hgroup>
-                    <h2>桃花-油纸伞</h2>
-                    <h2>加厚油纸，天然桐油</h2>
-                    <h2></h2>
-                    <h2></h2>
-                </hgroup>
-            </li>
-            <li>
-                <hgroup>
-                    <h2>幽兰山谷-油纸伞</h2>
-                    <h2>加厚油纸，天然桐油</h2>
-                    <h2></h2>
-                    <h2></h2>
-                </hgroup>
-            </li>
-        </ul>
-    </div>
-    <div class="try">
-        <header>
-            <img src="./素材/images/gongyi.png" >
-        </header>
-        <p>300年工艺传承，独具精工匠心，108道工序</p>
-        <ul>
-            <li>
-                <img class="zheng" src="./素材/images/try1.jpg" alt="">
-                <img class="fan" src="./素材/images/try4.jpg" alt="">
-            </li>
-            <li>
-                <img class="zheng" src="./素材/images/try2.jpg" alt="">
-                <img class="fan" src="./素材/images/try5.jpg" alt="">
-            </li>
-            <li>
-                <img class="zheng" src="./素材/images/try3.jpg" alt="">
-                <img class="fan" src="./素材/images/try6.jpg" alt="">
-            </li>
-        </ul>
-    </div>
-    <div class="make">
-        <header>
-            <img src="./素材/images/pinpai.png" alt="">
-        </header>
-        <p>我们更专业 用户更放心</p>
-        <ul>
-            <li>
-                <img class="tu" src="./素材/images/cp1.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th1.png" alt="">
-            </li>
-            <li>
-                <img class="tu" src="./素材/images/cp2.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th2.png" alt="">
-            </li>
-            <li>
-                <img class="tu" src="./素材/images/cp3.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th3.png" alt="">
-            </li>
-            <li>
-                <img class="tu" src="./素材/images/cp4.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th4.png" alt="">
-            </li>
-            <li>
-                <img class="tu" src="./素材/images/cp5.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th5.png" alt="">
-            </li>
-            <li>
-                <img class="tu" src="./素材/images/cp6.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th6.png" alt="">
-            </li>
-            <li>
-                <img class="tu" src="./素材/images/cp1.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th1.png" alt="">
-            </li>
-            <li>
-                <img class="tu" src="./素材/images/cp7.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th7.png" alt="">
-            </li>
-        </ul>
-    </div>
-    <div class="biaodan">
-        <footer>
-            <div class="logo"></div>
-            <div class="message">
-                <form>
-                    <ul class="left">
-                        <li>
-                            <p><label for="">姓名：</label></p>
-                            <input type="text">
-                        </li>
-                        <li>
-                            <p>邮件：</p>
-                            <input type="email">
-                        </li>
-                        <li>
-                            <p>电话：</p>
-                            <input type="tel" pattern="^\d{11}$" title="请输入11位数字">
-                        </li>
-                        <li>
-                            <p>密码：</p>
-                            <input type="password">
-                        </li>
-                        <li>
-                            <input class="but" type="submit" value="">
-                        </li>
-                    </ul>
-                    <div class="right">
-                        <p>留言：</p>
-                        <textarea></textarea>
-                    </div>
-                </form>
-            </div>
-        </footer>
-        <!-- biaodan end -->
-        <!-- banquan begin -->
-    </div>
-    <div class="banquan">
-        <a href="#">泸州油纸伞 独具匠心 工艺传承</a>
     <!-- 登录模态框 -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
@@ -930,8 +738,8 @@
             <div class="con">
                 <section class="left"></section>
                 <section class="right">
-                    <a href="#">登录</a>
-                    <a href="#">注册</a>
+                    <a href="#" id="loginLink">登录</a>
+                    <a href="#" id="registerLink">注册</a>
                 </section>
             </div>
         </header>
@@ -939,40 +747,37 @@
             <ul>
                 <li class="left">
                     <a class="one" href="#">
-                        <img src="./素材/images/sanxian.png" alt="">
+                        <img src="./sucai/images/sanxian.png" alt="">
                         <span>选项</span>
-                        <img src="./素材/images/sanjiao.png" alt="">
+                        <img src="./sucai/images/sanjiao.png" alt="">
                     </a>
                     <aside>
                         <span></span>
                         <ol class="zuo">
                             <li class="con">油纸伞产品分类</li>
-                            <li>>彩印类</li>
-                            <li>>手绘类</li>
-                            <li>>植物标本类</li>
-                            <li>>石板印刷类</li>
-                            <li class="con">油脂伞功能分类</li>
-                            <li>>装饰吊顶</li>
-                            <li>>户外庭院</li>
-                            <li>>婚庆</li>
-                            <li class="con">油纸伞节日礼物</li>
-                            <li>>节节高升</li>
-                            <li>>团圆美满</li>
-                            <li>>平安暴富</li>
+                            <li><a href="#">>彩印类</a></li>
+                            <li><a href="#">>手绘类</a></li>
+                            <li><a href="#">>植物标本类</a></li>
+                            <li><a href="#">>石板印刷类</a></li>
+                            <li><a href="#">>装饰吊顶</a></li>
+                            <li><a href="#">>户外庭院</a></li>
+                            <li><a href="#">>婚庆</a></li>
+                            <li><a href="#">>节节高升</a></li>
+                            <li><a href="#">>团圆美满</a></li>
+                            <li><a href="#">>平安暴富</a></li>
                         </ol>
                         <ol class="you">
                             <li class="con">油纸伞介绍</li>
-                            <li>>认识油纸伞</li>
-                            <li>>油纸伞历史</li>
-                            <li>>工艺特色</li>
-                            <li>>文化内涵</li>
-                            <li class="con">热门搜索</li>
-                            <li>>摄影专用</li>
-                            <li>>遮阳伞</li>
-                            <li>>影视同款</li>
-                            <li>>舞蹈</li>s
+                            <li><a href="#">>认识油纸伞</a></li>
+                            <li><a href="#">>油纸伞历史</a></li>
+                            <li><a href="#">>工艺特色</a></li>
+                            <li><a href="#">>文化内涵</a></li>
+                            <li><a href="#">>摄影专用</a></li>
+                            <li><a href="#">>遮阳伞</a></li>
+                            <li><a href="#">>影视同款</a></li>
+                            <li><a href="#">>舞蹈</a></li>
                         </ol>
-                        <img src="./素材/images/tu1.jpg" alt="">
+                        <img src="./sucai/images/tu1.jpg" alt="">
                     </aside>
                 </li>
                 <li class="center">
@@ -981,26 +786,26 @@
                     </form>
                 </li>
                 <li class="right">
-                    <a href="#">&#xe65e;</a>
-                    <a href="#">&#xe608;</a>
-                    <a href="#">&#xf012a;</a>
-                    <a href="#">&#xe68e;</a>
+                    <a href="#">♪</a>
+                    <a href="#">♡</a>
+                    <a href="#">☆</a>
+                    <a href="#">✓</a>
                 </li>
             </ul>
         </nav>
-        <video src="./素材/video/home_loop_720p.mp4" autoplay loop muted></video>
-        <audio src="./素材/audio/buguniao.mp3" autoplay loop></audio>
+        <video src="./sucai/video/home_loop_720p.mp4" autoplay loop muted></video>
+        <audio src="./sucai/audio/buguniao.mp3" autoplay loop></audio>
         <div class="pic">
             <p>第二批国家级非物质文化遗产名录(The second batch of national intangible cultural heritage list)</p>
             <ul>
-                <li class="one"><span>&#xe662</span>STANDARD标准</li>
-                <li class="two"><span>&#xe662</span>HD高清</li>
+                <li class="one"><span></span>STANDARD标准</li>
+                <li class="two"><span></span>HD高清</li>
             </ul>
         </div>
     </div>
     <div class="classic">
         <header>
-            <img src="./素材/images/new.png" alt="">
+            <img src="./sucai/images/new.png" alt="">
         </header>
         <p>采用安全无镉丙烯颜料，性质稳定，不易褪色</p>
         <ul>
@@ -1032,61 +837,61 @@
     </div>
     <div class="try">
         <header>
-            <img src="./素材/images/gongyi.png" >
+            <img src="./sucai/images/gongyi.png" >
         </header>
         <p>300年工艺传承，独具精工匠心，108道工序</p>
         <ul>
             <li>
-                <img class="zheng" src="./素材/images/try1.jpg" alt="">
-                <img class="fan" src="./素材/images/try4.jpg" alt="">
+                <img class="zheng" src="./sucai/images/try1.jpg" alt="">
+                <img class="fan" src="./sucai/images/try4.jpg" alt="">
             </li>
             <li>
-                <img class="zheng" src="./素材/images/try2.jpg" alt="">
-                <img class="fan" src="./素材/images/try5.jpg" alt="">
+                <img class="zheng" src="./sucai/images/try2.jpg" alt="">
+                <img class="fan" src="./sucai/images/try5.jpg" alt="">
             </li>
             <li>
-                <img class="zheng" src="./素材/images/try3.jpg" alt="">
-                <img class="fan" src="./素材/images/try6.jpg" alt="">
+                <img class="zheng" src="./sucai/images/try3.jpg" alt="">
+                <img class="fan" src="./sucai/images/try6.jpg" alt="">
             </li>
         </ul>
     </div>
     <div class="make">
         <header>
-            <img src="./素材/images/pinpai.png" alt="">
+            <img src="./sucai/images/pinpai.png" alt="">
         </header>
         <p>我们更专业 用户更放心</p>
         <ul>
             <li>
-                <img class="tu" src="./素材/images/cp1.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th1.png" alt="">
+                <img class="tu" src="./sucai/images/cp1.jpg" alt="">
+                <img class="tihuan" src="./sucai/images/th1.png" alt="">
             </li>
             <li>
-                <img class="tu" src="./素材/images/cp2.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th2.png" alt="">
+                <img class="tu" src="./sucai/images/cp2.jpg" alt="">
+                <img class="tihuan" src="./sucai/images/th2.png" alt="">
             </li>
             <li>
-                <img class="tu" src="./素材/images/cp3.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th3.png" alt="">
+                <img class="tu" src="./sucai/images/cp3.jpg" alt="">
+                <img class="tihuan" src="./sucai/images/th3.png" alt="">
             </li>
             <li>
-                <img class="tu" src="./素材/images/cp4.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th4.png" alt="">
+                <img class="tu" src="./sucai/images/cp4.jpg" alt="">
+                <img class="tihuan" src="./sucai/images/th4.png" alt="">
             </li>
             <li>
-                <img class="tu" src="./素材/images/cp5.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th5.png" alt="">
+                <img class="tu" src="./sucai/images/cp5.jpg" alt="">
+                <img class="tihuan" src="./sucai/images/th5.png" alt="">
             </li>
             <li>
-                <img class="tu" src="./素材/images/cp6.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th6.png" alt="">
+                <img class="tu" src="./sucai/images/cp6.jpg" alt="">
+                <img class="tihuan" src="./sucai/images/th6.png" alt="">
             </li>
             <li>
-                <img class="tu" src="./素材/images/cp1.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th1.png" alt="">
+                <img class="tu" src="./sucai/images/cp1.jpg" alt="">
+                <img class="tihuan" src="./sucai/images/th1.png" alt="">
             </li>
             <li>
-                <img class="tu" src="./素材/images/cp7.jpg" alt="">
-                <img class="tihuan" src="./素材/images/th7.png" alt="">
+                <img class="tu" src="./sucai/images/cp7.jpg" alt="">
+                <img class="tihuan" src="./sucai/images/th7.png" alt="">
             </li>
         </ul>
     </div>
@@ -1113,7 +918,7 @@
                             <input type="password" id="contactPassword">
                         </li>
                         <li>
-                            <input class="but" type="submit" value="提交">
+                            <input class="submit">
                         </li>
                     </ul>
                     <div class="right">
@@ -1130,8 +935,9 @@
         <a href="#">泸州油纸伞 独具匠心 工艺传承</a>
     </div>
     <!-- banquan end -->
-<script>
-        // 获取DOM元素
+    
+    <script>
+        // 原有JavaScript代码保持不变
         const loginLink = document.getElementById('loginLink');
         const registerLink = document.getElementById('registerLink');
         const loginModal = document.getElementById('loginModal');
@@ -1141,21 +947,17 @@
         const switchToLogin = document.getElementById('switchToLogin');
         const loginForm = document.getElementById('loginForm');
         const registerForm = document.getElementById('registerForm');
-        const contactForm = document.getElementById('contactForm');
 
-        // 打开登录模态框
         loginLink.addEventListener('click', function(e) {
             e.preventDefault();
             loginModal.style.display = 'flex';
         });
 
-        // 打开注册模态框
         registerLink.addEventListener('click', function(e) {
             e.preventDefault();
             registerModal.style.display = 'flex';
         });
 
-        // 关闭模态框
         closeButtons.forEach(button => {
             button.addEventListener('click', function() {
                 loginModal.style.display = 'none';
@@ -1163,7 +965,6 @@
             });
         });
 
-        // 点击模态框外部关闭
         window.addEventListener('click', function(event) {
             if (event.target === loginModal) {
                 loginModal.style.display = 'none';
@@ -1173,30 +974,24 @@
             }
         });
 
-        // 切换到注册表单
         switchToRegister.addEventListener('click', function() {
             loginModal.style.display = 'none';
             registerModal.style.display = 'flex';
         });
 
-        // 切换到登录表单
         switchToLogin.addEventListener('click', function() {
             registerModal.style.display = 'none';
             loginModal.style.display = 'flex';
         });
 
-        // 登录表单提交
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
-            
-            // 这里可以添加实际的登录验证逻辑
             alert('登录成功！欢迎回来，' + username);
             loginModal.style.display = 'none';
         });
 
-        // 注册表单提交
         registerForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('regUsername').value;
@@ -1209,116 +1004,26 @@
                 return;
             }
             
-            // 这里可以添加实际的注册逻辑
             alert('注册成功！欢迎加入我们，' + username);
             registerModal.style.display = 'none';
         });
 
-        // 联系表单提交
-        contactForm.addEventListener('submit', function(e) {
+        // 新增表单验证逻辑
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
             
-            // 这里可以添加实际的表单提交逻辑
-            alert('提交成功！感谢您的留言，' + name);
-            contactForm.reset();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('两次输入的密码不一致！');
+                return;
+            }
+            
+            alert('注册成功！感谢您的支持');
+            this.reset();
         });
     </script>
 </body>
 
 </html>
-    // 获取DOM元素
-    const loginLink = document.getElementById('loginLink');
-    const registerLink = document.getElementById('registerLink');
-    const loginModal = document.getElementById('loginModal');
-    const registerModal = document.getElementById('registerModal');
-    const closeButtons = document.querySelectorAll('.modal-close');
-    const switchToRegister = document.getElementById('switchToRegister');
-    const switchToLogin = document.getElementById('switchToLogin');
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const contactForm = document.getElementById('contactForm');
-
-    // 打开登录模态框
-    loginLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        loginModal.style.display = 'flex';
-    });
-
-    // 打开注册模态框
-    registerLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        registerModal.style.display = 'flex';
-    });
-
-    // 关闭模态框
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            loginModal.style.display = 'none';
-            registerModal.style.display = 'none';
-        });
-    });
-
-    // 点击模态框外部关闭
-    window.addEventListener('click', function(event) {
-        if (event.target === loginModal) {
-            loginModal.style.display = 'none';
-        }
-        if (event.target === registerModal) {
-            registerModal.style.display = 'none';
-        }
-    });
-
-    // 切换到注册表单
-    switchToRegister.addEventListener('click', function() {
-        loginModal.style.display = 'none';
-        registerModal.style.display = 'flex';
-    });
-
-    // 切换到登录表单
-    switchToLogin.addEventListener('click', function() {
-        registerModal.style.display = 'none';
-        loginModal.style.display = 'flex';
-    });
-
-    // 登录表单提交
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const username = document.getElementById('loginUsername').value;
-        const password = document.getElementById('loginPassword').value;
-        
-        // 这里可以添加实际的登录验证逻辑
-        alert('登录成功！欢迎回来，' + username);
-        loginModal.style.display = 'none';
-    });
-
-    // 注册表单提交
-    registerForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const username = document.getElementById('regUsername').value;
-        const email = document.getElementById('regEmail').value;
-        const password = document.getElementById('regPassword').value;
-        const confirmPassword = document.getElementById('regConfirmPassword').value;
-        
-        if (password !== confirmPassword) {
-            alert('两次输入的密码不一致！');
-            return;
-        }
-        
-        // 这里可以添加实际的注册逻辑
-        alert('注册成功！欢迎加入我们，' + username);
-        registerModal.style.display = 'none';
-    });
-
-    // 联系表单提交
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        
-        // 这里可以添加实际的表单提交逻辑
-        alert('提交成功！感谢您的留言，' + name);
-        contactForm.reset();
-    });
-</script>
